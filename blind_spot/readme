@@ -1,0 +1,7 @@
+The files in this directory contain tracked positions of pedestrians with parts of tracked space ignored.
+These computations were done in order to estimate the error tracker confronts while detecting pedestrians entering from the boundaries of tracked area.
+The ignored portions are towards the west of flux line vectors shown in display.
+
+files having tag A had flux vector at line at x=0
+files having tag B had flux vector at line at x=6
+files having tag C had flux vector at line at x=-6

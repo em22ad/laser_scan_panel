@@ -1,0 +1,25 @@
+<!-- Config file specifics -->
+<!ELEMENT logconfiguration (config, (logfile)*, (annotation)*)>
+
+<!ELEMENT config (#PCDATA)>
+
+<!ELEMENT logfile (notes?, (period)+)>
+<!ATTLIST logfile name CDATA #REQUIRED>
+<!ATTLIST logfile file CDATA #REQUIRED>
+
+<!ELEMENT notes (#PCDATA)>
+
+<!ELEMENT period (note, location)>
+<!ATTLIST period start_time CDATA #REQUIRED>
+<!ATTLIST period end_time CDATA #REQUIRED>
+<!ATTLIST period active (true|false|yes|no) "yes">
+<!ELEMENT note (#PCDATA)>
+<!ELEMENT location (#PCDATA)>
+<!ATTLIST location x CDATA #REQUIRED>
+<!ATTLIST location y CDATA #REQUIRED>
+<!ATTLIST location t CDATA #REQUIRED>
+
+
+<!ELEMENT annotation (#PCDATA)>
+<!ATTLIST annotation time CDATA #REQUIRED>
+
