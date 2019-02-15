@@ -140,7 +140,7 @@ void tracking_process(tracking_t * tr, ped_set_t * peds)
     ii=0;
     for (i = tr->start_peds_index; i < N; i++)     //for each pedestrian
     {
-        pt_indx_ct[i] = ((pedestrian_t *) g_list_nth_data(peds->ped_list, i))->clust_card;
+        pt_indx_ct[i] = ((pedestrian_t *) g_list_nth_data(peds->ped_list, i))->clust_card; //get total cluster count for ped i
         tr->people[i].updated=0;
 
         if (peds->updated[i] == 1)
@@ -234,18 +234,18 @@ void tracking_process(tracking_t * tr, ped_set_t * peds)
     while (i < N)               // loop will run once for each dectected pedestrian i is index for projected pedestrians
     {
         sumprob = 0.000;
-        temp_list = (GList *) ((pedestrian_t *) g_list_nth_data(peds->ped_list, i))->cluster_list;
+        temp_list = (GList *) ((pedestrian_t *) g_list_nth_data(peds->ped_list, i))->cluster_list; //get a list of clusters for a projected pedestrian
         //printf("[tracking.c] ped-> %d.\n",i);                         
         if (peds->updated[i] == 1)
         {
             //printf("[tracking.c] start for loop: %d.\n",i);       
-            for (j = 0; j < M; j++)
+            for (j = 0; j < M; j++)	//iterate through all particles of an updated pedestrian
             {
                 sumL = 0.000;
             	sumR = 0.000;
                 //printf("[tracking.c] Inside ped pos update\n",j);                              
                 cluster_list = g_list_first(temp_list);
-                for (c = 0; c < pt_indx_ct[i]; c++)
+                for (c = 0; c < pt_indx_ct[i]; c++) //iterate through all clusters belonging to a pedestrian for each particle
                 {
                     if (cluster_list == NULL)
                     {
@@ -257,7 +257,10 @@ void tracking_process(tracking_t * tr, ped_set_t * peds)
                     //printf("[tracking.c] cluster must have pts > 0 : %d\n",temp_clust->num_pts);
                     
                     v = 0;
-                    for (points_list =  g_list_first(temp_clust->points_list); points_list; points_list = g_list_next(points_list))
+		    
+		    //iterate through all points in one of the clusters belonging to a pedestrian for each of its particle
+                    //Compute the sum of distances between "all points belonging to all clusters of a pedestrain" AND the particular tracked partile of the pedestrian 
+		    for (points_list =  g_list_first(temp_clust->points_list); points_list; points_list = g_list_next(points_list))
                     {
                          
                         if (v >= temp_clust->num_pts)
@@ -279,7 +282,7 @@ void tracking_process(tracking_t * tr, ped_set_t * peds)
                         v++;
                         
                     }
-
+		    
                     cluster_list = g_list_next(cluster_list);
                 }
 
@@ -289,7 +292,10 @@ void tracking_process(tracking_t * tr, ped_set_t * peds)
                 pB = (1.000 / (sqrt_6285 * h)) * exp(-(SQR(d0 - r0)) / (2.0 * SQR(h)));
                 cjR = (1.000 / (sqrt_6285 * covS)) * sumR;
                 cjL = (1.000 / (sqrt_6285 * covS)) * sumL;
-                prob[ii][j] = cjR * cjL * pB;
+                //based upon the newly calculated distance between the "tracked pedestrian position" AND its "updated associated clusters"
+		//... update the probability of the pedestrian to be sampled in the sampling step. The particles which have the closest distance 
+		//... will most probably be picked up as the "tracked pedestrian location" during the sampling step. 
+		prob[ii][j] = cjR * cjL * pB;
                 sumprob = sumprob + (prob[ii][j]);
             }// end for loop for M
         } //end if  
