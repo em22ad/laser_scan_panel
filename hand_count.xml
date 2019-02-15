@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE logconfiguration
+SYSTEM "dtds/log_cfg.dtd">
+<logconfiguration>
+ <config/>
+ <logfile name="Laser 1" file="/home/dshell/psg/laser_scan_panel/logs/laser_intel1_06_19_07_TueCSC.dat">
+  <notes/>
+  <period start_time="1182127741.680000" end_time="1182127905.780000" active="false">
+   <note></note>
+   <location x="-4.850000" y="2.925000" t="1.663507"/>
+  </period>
+  <period start_time="1182127905.783842" end_time="1182135912.200000" active="true">
+   <note>(DUP) </note>
+   <location x="-4.895917" y="2.943624" t="1.527421"/>
+  </period>
+ </logfile>
+ <annotation time="1182131943.020000">Begin of actual run.</annotation>
+</logconfiguration>

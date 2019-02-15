@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE logconfiguration
+SYSTEM "dtds/log_cfg.dtd">
+<logconfiguration>
+ <config>
+    This is not
+    
+
+</config>
+ <logfile name="Real 2" file="/home/dshell/psg/laser_scan_panel/logs/hsd/laser_intel1_07_02_07_MonCSC.dat">
+  <notes/>
+  <period start_time="1183249408.440000" end_time="1183249674.900000" active="false">
+   <note></note>
+   <location x="-4.893717" y="2.983780" t="1.671745"/>
+  </period>
+  <period start_time="1183249674.895536" end_time="1183257593.760000" active="true">
+   <note>(DUP)</note>
+   <location x="-4.893717" y="2.983780" t="1.671745"/>
+  </period>
+ </logfile>
+ <logfile name="Intel0's data" file="/home/dshell/psg/laser_scan_panel/logs/hsd/laser_intel0_07_02_07_MonCSC.dat">
+  <notes/>
+  <period start_time="1183249559.940000" end_time="1183249674.900000" active="false">
+   <note></note>
+   <location x="4.666257" y="2.932514" t="1.506122"/>
+  </period>
+  <period start_time="1183249674.895536" end_time="1183257592.320000" active="true">
+   <note>(DUP)</note>
+   <location x="4.666257" y="2.932514" t="1.506122"/>
+  </period>
+ </logfile>
+ <annotation time="1183251129.040015">
+This is blah
+</annotation>
+ <annotation time="1183253466.100000">Rather a large bunch of people begin walking through here.</annotation>
+ <annotation time="1183253452.350000">Single Person walks by entrance.</annotation>
+ <annotation time="1183251840.540000">A few people</annotation>
+</logconfiguration>
